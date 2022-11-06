@@ -10,10 +10,14 @@ export default StyleSheet.create({
   },
   safeInnerContainer:{
     padding:Layout.objectPadding,
-    
   },
   container: {
     flex: 1,
     backgroundColor: Colors.backgroundColor,
+  },
+  loaderContainer:{
+    justifyContent:'center',
+    alignItems:'center',
+    flex:0.9
   }
 })
