@@ -8,7 +8,12 @@ export default StyleSheet.create({
     justifyContent:'center',
     alignItems:'center'
   },
-  goBack:{
+  logo:{
+    width:Screen.Width*0.9,
+    height:Screen.Width*0.9,
+    resizeMode:'contain'
+  },
+  pressHere:{
     fontFamily:Fonts.Regular,
     fontSize:16
   }

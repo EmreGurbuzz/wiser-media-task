@@ -6,9 +6,11 @@ import Header from '../../components/Header'
 import { Colors } from '../../config'
 import CustomCard from '../../components/CustomCard'
 import CustomPopup from '../../components/CustomPopup'
+interface IProps{
+  navigation:any
+}
 
-
-const Home: FC = () => {
+const Home: FC<IProps> = (props) => {
   const [visible, setVisible] = useState(false)
   const [loader, setLoader] = useState(true)
   const [posts, setPosts] = useState([] as any)
@@ -25,7 +27,7 @@ const Home: FC = () => {
     <View style={styles.container}>
       <SafeAreaView style={styles.containerSafe}>
         <View style={styles.safeInnerContainer}>
-          <Header />
+          <Header goBack={()=>props.navigation.goBack()} />
         </View>
       </SafeAreaView>
       {loader ?
@@ -41,7 +43,8 @@ const Home: FC = () => {
             data={posts}
             renderItem={({ item, index }) =>
               <CustomCard
-                onPressDetail={()=>setVisible(!visible)}
+                openDetail={() => props.navigation.navigate("Detail")}
+                onPressDetail={() => setVisible(!visible)}
                 from={item.from}
                 insertDate={item.insertDate}
                 job={item.job}
@@ -60,9 +63,9 @@ const Home: FC = () => {
           />
         </View>
       }
-      <CustomPopup 
-      onPress={()=>setVisible(!visible)} 
-      visible={visible} />
+      <CustomPopup
+        onPress={() => setVisible(!visible)}
+        visible={visible} />
     </View>
   )
 }

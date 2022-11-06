@@ -16,7 +16,8 @@ interface ICardProps {
   postType: "video" | "image" | "sound",
   postSource: string,
   tags: string[],
-  onPressDetail:()=>void
+  onPressDetail: () => void,
+  openDetail:()=>void
 }
 const CustomHeader: FC<ICardProps> = (props) => {
   const getUserComment = () => { // @içeren mesajı öne çıkarıp buton yapıyor
@@ -25,7 +26,7 @@ const CustomHeader: FC<ICardProps> = (props) => {
     }
     else { // yorum varsa
       let comment = '', mention = ''
-      for (let i = 0; i < props.userComment?.length; i++) { 
+      for (let i = 0; i < props.userComment?.length; i++) {
         if (props.userComment[i] == "@") {
           let startValue: any = i;
           for (let j = startValue; j < startValue + 25; j++) {
@@ -86,25 +87,29 @@ const CustomHeader: FC<ICardProps> = (props) => {
     switch (props.postType) {
       case "image":
         return (
-          <Image style={styles.postImage} source={{ uri: props.postSource }} />
+          <TouchableOpacity onPress={()=>props.openDetail()}>
+            <Image style={styles.postImage} source={{ uri: props.postSource }} />
+          </TouchableOpacity>
         )
       case "video":
         return (
-          <ImageBackground style={[styles.postImage, styles.centered]} source={{ uri: props.postSource }}>
-            <TouchableOpacity>
-              <Image style={styles.playButton} source={require('../../assets/images/play-button.png')} />
-            </TouchableOpacity>
-          </ImageBackground>
+          <TouchableOpacity onPress={()=>props.openDetail()}>
+            <ImageBackground style={[styles.postImage, styles.centered]} source={{ uri: props.postSource }}>
+              <TouchableOpacity>
+                <Image style={styles.playButton} source={require('../../assets/images/play-button.png')} />
+              </TouchableOpacity>
+            </ImageBackground>
+          </TouchableOpacity>
         )
       case "sound":
         return (
-          <View style={[styles.podcastContainer, styles.centered]}>
+          <TouchableOpacity onPress={()=>props.openDetail()} style={[styles.podcastContainer, styles.centered]}>
             <ImageBackground style={[styles.podcastImage, styles.centered]} borderRadius={175} source={{ uri: props.postSource }}>
               <TouchableOpacity>
                 <Image style={styles.playButton} source={require('../../assets/images/play-button.png')} />
               </TouchableOpacity>
             </ImageBackground>
-          </View>
+          </TouchableOpacity>
         )
     }
   }
