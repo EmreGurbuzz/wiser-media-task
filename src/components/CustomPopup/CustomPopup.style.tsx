@@ -1,0 +1,77 @@
+import { StyleSheet } from "react-native";
+import { Colors, Fonts, Screen } from "../../config";
+
+export default StyleSheet.create({
+    modalContainer:{
+        backgroundColor:'rgba(0,0,0,0.85)',
+        flex:1,
+      },
+      modalInner:{
+        height:Screen.Height/2,
+        position:'absolute',
+        bottom:0,
+        margin:0,
+        width:Screen.Width,
+        justifyContent:'flex-end',
+        paddingBottom:25
+      },
+      buttonText:{
+        fontFamily:Fonts.Regular,
+        fontSize:16,
+        color:Colors.darkblue
+      },
+      buttonDelete:{
+        fontFamily:Fonts.Regular,
+        fontSize:16,
+        color:Colors.red
+      },
+      cancel:{
+        backgroundColor:Colors.white,
+        width:Screen.Width*0.95,
+        height:55,
+        alignSelf:'center',
+        borderRadius:15,
+        justifyContent:'center',
+        alignItems:'center',
+        borderWidth:1,
+        borderColor:Colors.lightgray
+      },
+      delete:{
+        backgroundColor:Colors.white,
+        width:Screen.Width*0.95,
+        height:55,
+        alignSelf:'center',
+        borderRadius:15,
+        justifyContent:'center',
+        alignItems:'center',
+        borderWidth:1,
+        borderColor:Colors.lightgray,
+        borderBottomLeftRadius:0,
+        borderBottomRightRadius:0
+      },
+      share:{
+        backgroundColor:Colors.white,
+        width:Screen.Width*0.95,
+        height:55,
+        alignSelf:'center',
+        justifyContent:'center',
+        alignItems:'center',
+        borderWidth:1,
+        borderColor:Colors.lightgray,
+      },
+      curation:{
+        backgroundColor:Colors.white,
+        width:Screen.Width*0.95,
+        height:55,
+        alignSelf:'center',
+        justifyContent:'center',
+        borderRadius:15,
+        alignItems:'center',
+        borderWidth:1,
+        borderColor:Colors.lightgray,
+        borderTopRightRadius:0,
+        borderTopLeftRadius:0,
+        marginBottom:15
+      },
+
+})

@@ -5,9 +5,11 @@ import styles from './Home.style'
 import Header from '../../components/Header'
 import { Colors } from '../../config'
 import CustomCard from '../../components/CustomCard'
+import CustomPopup from '../../components/CustomPopup'
 
 
 const Home: FC = () => {
+  const [visible, setVisible] = useState(false)
   const [loader, setLoader] = useState(true)
   const [posts, setPosts] = useState([] as any)
   function getData() {
@@ -39,6 +41,7 @@ const Home: FC = () => {
             data={posts}
             renderItem={({ item, index }) =>
               <CustomCard
+                onPressDetail={()=>setVisible(!visible)}
                 from={item.from}
                 insertDate={item.insertDate}
                 job={item.job}
@@ -57,6 +60,9 @@ const Home: FC = () => {
           />
         </View>
       }
+      <CustomPopup 
+      onPress={()=>setVisible(!visible)} 
+      visible={visible} />
     </View>
   )
 }

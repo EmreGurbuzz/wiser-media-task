@@ -1,5 +1,5 @@
-import { View, Text, TouchableOpacity, Image, ImageBackground, ScrollView } from 'react-native'
-import React, { FC } from 'react'
+import { View, Text, TouchableOpacity, Image, ImageBackground, ScrollView, Modal } from 'react-native'
+import React, { FC, useState } from 'react'
 import styles from './CustomCard.style'
 interface ICardProps {
   from: string,
@@ -15,21 +15,19 @@ interface ICardProps {
   postContent: string,
   postType: "video" | "image" | "sound",
   postSource: string,
-  tags: string[]
+  tags: string[],
+  onPressDetail:()=>void
 }
 const CustomHeader: FC<ICardProps> = (props) => {
-  const getUserComment = () => {
-    if (!props.userComment) {
+  const getUserComment = () => { // @içeren mesajı öne çıkarıp buton yapıyor
+    if (!props.userComment) { // yorum yoksa
       return
     }
-    else {
+    else { // yorum varsa
       let comment = '', mention = ''
-      for (let i = 0; i < props.userComment?.length; i++) {
-        console.log("for dönmeye başladı ", i)
+      for (let i = 0; i < props.userComment?.length; i++) { 
         if (props.userComment[i] == "@") {
-          console.log("@ işareti geldi")
           let startValue: any = i;
-          console.log("startValue ", startValue)
           for (let j = startValue; j < startValue + 25; j++) {
             if (props.userComment[j] && props.userComment[j] != " ") {
               mention += props.userComment[j]
@@ -45,8 +43,8 @@ const CustomHeader: FC<ICardProps> = (props) => {
       }
       return (
         <Text style={styles.tagText}>{comment}
-          <TouchableOpacity  onPress={()=>console.log(`url to :${mention}`)}>
-            <Text style={[styles.sharedFromOther,styles.mention]}>{mention}</Text>
+          <TouchableOpacity onPress={() => console.log(`url to :${mention}`)}>
+            <Text style={[styles.sharedFromOther, styles.mention]}>{mention}</Text>
           </TouchableOpacity>
         </Text>
       )
@@ -98,7 +96,6 @@ const CustomHeader: FC<ICardProps> = (props) => {
             </TouchableOpacity>
           </ImageBackground>
         )
-
       case "sound":
         return (
           <View style={[styles.podcastContainer, styles.centered]}>
@@ -128,7 +125,7 @@ const CustomHeader: FC<ICardProps> = (props) => {
           </View>
           <Text style={styles.insertDate}>{props.insertDate}</Text>
         </View>
-        <TouchableOpacity style={styles.dotContainer}>
+        <TouchableOpacity onPress={props.onPressDetail} style={styles.dotContainer}>
           <View style={styles.dot} />
           <View style={styles.dot} />
           <View style={styles.dot} />

@@ -162,5 +162,6 @@ export default StyleSheet.create({
   },
   mention:{
     top:6
-  }
+  },
+  
 })
